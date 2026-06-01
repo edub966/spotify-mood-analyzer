@@ -31,6 +31,32 @@ Open `config.js` and replace `YOUR_CLIENT_ID_HERE` with your actual Client ID.
 
 Open `index.html` with VS Code Live Server (right-click → Open with Live Server/Alt + L + O). Log in with your Spotify account and the analyzer will pull your listening history automatically.
 
+Don't have VS Code and don't want to install? No problem:
+
+**The easiest way — Python (no install needed on Mac/Linux):**
+
+```bash
+cd spotify-mood-analyzer
+python3 -m http.server 5500
+```
+
+Then open `http://127.0.0.1:5500` in your browser.
+
+**Windows:**
+```bash
+python -m http.server 5500
+```
+
+If Python isn't installed, download it at python.org — it's one click.
+
+**Already have Node.js?**
+```bash
+npx http-server -p 5500
+```
+
+Whatever method you use, make sure `REDIRECT_URI` in `config.js` matches 
+and that same URI is saved in your Spotify app's redirect URI list.
+
 ## How the scoring works
 
 The app pulls three data sources in parallel:
