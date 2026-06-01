@@ -1,5 +1,5 @@
-const CLIENT_ID = '1f495abfd49e41afb1e975d106d15fd4';
-const REDIRECT_URI = 'http://127.0.0.1:5500';
+const CLIENT_ID = CONFIG.CLIENT_ID;
+const REDIRECT_URI = CONFIG.REDIRECT_URI;
 const SCOPES = 'user-read-recently-played user-top-read';
 
 const API_BASE = 'https://api.spotify.com/v1';

@@ -1,0 +1,4 @@
+const CONFIG = {
+  CLIENT_ID: 'YOUR_CLIENT_ID_HERE',
+  REDIRECT_URI: 'http://127.0.0.1:5500',
+};
