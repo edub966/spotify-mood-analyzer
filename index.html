@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050806" />
+  <title>Spotify Mood Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-shell" aria-hidden="true">
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div class="noise-layer"></div>
+    <div class="wave-field">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <main id="login-screen" class="login-screen">
+    <section class="login-hero" aria-labelledby="login-title">
+      <div class="hero-copy">
+        <div class="brand-pill">
+          <span class="brand-dot"></span>
+          Spotify intelligence
+        </div>
+        <h1 id="login-title">Decode the mood of your music</h1>
+        <p>
+          Connect Spotify to transform your recent listening history into a cinematic mood dashboard with session energy,
+          emotional arcs, and track-level insights.
+        </p>
+        <div class="hero-actions">
+          <button id="login-btn">Connect with Spotify</button>
+          <span class="privacy-note">Read-only listening analysis</span>
+        </div>
+      </div>
+
+      <aside class="hero-visual" aria-label="Mood analytics preview">
+        <div class="visual-topline">
+          <div class="login-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="24" fill="#1DB954"/>
+              <path d="M33.6 21.6c-5.4-3.2-14.3-3.5-19.5-1.9-.8.2-1.7-.2-2-1-.2-.8.2-1.7 1-2 5.9-1.8 15.8-1.4 22 2.2.8.4 1 1.4.6 2.1-.4.8-1.4 1-2.1.6zm-.2 4.9c-.4.6-1.1.8-1.7.5-4.5-2.8-11.3-3.6-16.6-2-.6.2-1.3-.1-1.5-.8-.2-.6.1-1.3.8-1.5 6-1.8 13.5-1 18.6 2.2.6.3.8 1.1.4 1.6zm-2 4.7c-.3.5-.9.6-1.4.4-3.9-2.4-8.9-2.9-14.7-1.6-.5.1-1-.2-1.1-.8-.1-.5.2-1 .8-1.1 6.3-1.4 11.8-.8 16.1 1.8.5.3.6.9.3 1.3z" fill="white"/>
+            </svg>
+          </div>
+          <div>
+            <span class="eyebrow">Live preview</span>
+            <strong>Session pulse</strong>
+          </div>
+        </div>
+        <div class="pulse-orbit">
+          <div class="pulse-core">
+            <span>84</span>
+            <small>Hyped</small>
+          </div>
+        </div>
+        <div class="preview-grid">
+          <div><span>Peak track</span><strong>Neon Rush</strong></div>
+          <div><span>Energy</span><strong>High</strong></div>
+          <div><span>Arc</span><strong>Rising</strong></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <main id="app-screen" class="app-screen" style="display:none">
+    <header class="app-header">
+      <a class="app-title" href="/" aria-label="Spotify Mood Analyzer home">
+        <span class="brand-mark"></span>
+        <span>Mood Analyzer</span>
+      </a>
+      <button class="logout-btn" id="logout-btn">Log out</button>
+    </header>
+
+    <section id="loading" class="loading" aria-live="polite">
+      <div class="spinner"></div>
+      <p>Analyzing your listening signal...</p>
+      <div class="skeleton-grid" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <section id="content" class="dashboard" style="display:none">
+      <div class="dashboard-hero">
+        <div>
+          <div class="brand-pill">
+            <span class="brand-dot"></span>
+            Recent listening scan
+          </div>
+          <h1>Decode the mood of your music</h1>
+          <p>Your latest tracks translated into energy, context, and emotional momentum.</p>
+        </div>
+        <div class="dashboard-controls" aria-label="Analysis controls">
+          <label for="range-select">Listening window</label>
+          <select id="range-select">
+            <option value="blended">Blended signal</option>
+            <option value="recent">Recent plays</option>
+            <option value="short_term">Last month</option>
+            <option value="medium_term">Six months</option>
+            <option value="long_term">All-time signal</option>
+          </select>
+          <button class="secondary-btn" id="refresh-btn" type="button">Refresh analysis</button>
+          <span id="status-message" class="status-message" role="status"></span>
+        </div>
+      </div>
+
+      <section id="error-state" class="error-state" hidden></section>
+
+      <section class="summary-bar" aria-label="Mood summary">
+        <div class="summary-card" id="sum-session"></div>
+        <div class="summary-card" id="sum-top-mood"></div>
+        <div class="summary-card" id="sum-tracks"></div>
+        <div class="summary-card" id="sum-time"></div>
+      </section>
+
+      <section class="dashboard-grid">
+        <div class="arc-section panel">
+          <div class="section-heading">
+            <p class="section-label">Mood arc</p>
+            <span id="arc-subtitle">Most recent to oldest</span>
+          </div>
+          <div class="arc-wrap">
+            <div class="arc-chart" id="arc-chart"></div>
+            <div class="arc-labels">
+              <span>Euphoric</span>
+              <span>Neutral</span>
+              <span>Dark</span>
+            </div>
+          </div>
+          <div class="arc-insights" id="arc-insights"></div>
+        </div>
+
+        <aside class="insight-panel panel" aria-label="Mood model details">
+          <div class="section-heading">
+            <p class="section-label">Why this mood?</p>
+            <span>Explainable signals</span>
+          </div>
+          <div id="session-explanation" class="session-explanation">
+            <p>Connect Spotify to build a session explanation from available track metadata.</p>
+          </div>
+          <div class="signal-stack" id="source-breakdown">
+            <div><span>Genre gravity</span><strong>weighted</strong></div>
+            <div><span>Release recency</span><strong>scored</strong></div>
+            <div><span>Time context</span><strong>mapped</strong></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="tracks-panel panel">
+        <div class="section-heading">
+          <p class="section-label">Recent tracks</p>
+          <span>Mood score, tags, and listening context</span>
+        </div>
+        <div class="track-list" id="track-list"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
