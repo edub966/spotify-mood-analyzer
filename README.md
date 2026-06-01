@@ -6,7 +6,7 @@ Built with vanilla JavaScript, the Spotify Web API, and OAuth 2.0 PKCE authentic
 
 ## Why you can't just visit a link
 
-Spotify's Extended Quota Mode — which allows unlimited users — requires a legally registered business with 250k+ monthly active users as of May 2025. This app runs in Spotify's Development Mode, which caps access at 25 manually whitelisted accounts. The only way to use it without being on that list is to clone it and run it with your own Spotify developer app, which takes about 5 minutes.
+Spotify's Extended Quota Mode — which allows unlimited users — requires a legally registered business with 250k+ monthly active users as of May 2025. This app runs in Spotify's Development Mode, which caps access at 5 manually whitelisted accounts. The only way to use it without being on that list is to clone it and run it with your own Spotify developer app, which takes about 3 minutes.
 
 ## Setup
 
