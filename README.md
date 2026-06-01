@@ -29,7 +29,7 @@ Open `config.js` and replace `YOUR_CLIENT_ID_HERE` with your actual Client ID.
 
 **3. Run it**
 
-Open `index.html` with VS Code Live Server (right-click → Open with Live Server). Log in with your Spotify account and the analyzer will pull your listening history automatically.
+Open `index.html` with VS Code Live Server (right-click → Open with Live Server/Alt + L + O). Log in with your Spotify account and the analyzer will pull your listening history automatically.
 
 ## How the scoring works
 
